@@ -5,6 +5,7 @@ import psycopg2
 import pymongo
 from pymongo import MongoClient
 
+#Configurazione connessioni ai DB
 SQL_DB = {
     "host": "localhost",
     "user": "postgres",
@@ -21,7 +22,7 @@ MONGO_DB = {
     "database": "benchmark_db"
 }
 
-
+#Funzioni per connetterci ai Db
 def connect_sql():
     conn = psycopg2.connect(**SQL_DB)
     cursor = conn.cursor()
@@ -38,14 +39,15 @@ def connect_mongo():
         authSource=MONGO_DB.get("authSource", "admin")
     )
     db = client[MONGO_DB["database"]]
-    db.users.create_index("id")  # Indice su MongoDB
+    db.users.create_index("id")
     return db
 
+#Funzioni per leggere i file CSV e JSON
 def read_csv(file_path):
     with open(file_path, newline='', encoding='utf-8') as file:
         reader = csv.DictReader(file)
         header = reader.fieldnames
-        if "nome" in header and "email" in header:  # Controlla se è il file di insert
+        if "nome" in header and "email" in header:
             return [
                 {"id": int(row['id']), "nome": row['nome'], "email": row['email'], "indirizzo": row['indirizzo']}
                 for row in reader
@@ -59,7 +61,7 @@ def read_csv(file_path):
 def read_json(file_path):
     with open(file_path, encoding='utf-8') as file:
         data = json.load(file)
-        if "nome" in data[0] and "email" in data[0]:  # Controlla se è il file di insert
+        if "nome" in data[0] and "email" in data[0]:  
             return [
                 {"id": int(row['id']), "nome": row['nome'], "email": row['email'], "indirizzo": row['indirizzo']}
                 for row in data
@@ -70,10 +72,11 @@ def read_json(file_path):
                 for row in data
             ]
 
+#Elimionazione dati dai FB
 def clear_sql():
     conn = connect_sql()
     cursor = conn.cursor()
-    cursor.execute("TRUNCATE TABLE benchmark RESTART IDENTITY CASCADE")  # Svuota la tabella e resetta l'ID
+    cursor.execute("TRUNCATE TABLE benchmark RESTART IDENTITY CASCADE")  
     conn.commit()
     cursor.close()
     conn.close()
@@ -82,6 +85,7 @@ def clear_mongo():
     db = connect_mongo()
     db.users.delete_many({})
 
+# FunzionI per i benchmark
 def benchmark_sql(operation, data):
     conn = connect_sql()
     cursor = conn.cursor()
@@ -130,6 +134,7 @@ def benchmark_mongo(operation, data):
     
     return time.time() - start_time
 
+# Esegui il benchmark
 if __name__ == "__main__":
     insert_data_csv = read_csv("insert_data.csv")
     update_data_csv = read_csv("update_data.csv")
