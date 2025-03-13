@@ -10,7 +10,7 @@ SQL_DB = {
     "host": "localhost",
     "user": "postgres",
     "password": "password",
-    "database": "benchmark"
+    "database": "project_benchmark"
 }
 
 MONGO_DB = {
