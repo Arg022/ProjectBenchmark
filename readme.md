@@ -30,8 +30,7 @@ L'uso di CSV o JSON non influisce drasticamente sulle prestazioni di PostgreSQL,
 
 ## Come Avviare il Progetto
 
-Per avviare questo progetto, segui i passaggi seguenti:
-
+Per avviare questo progetto, segui i passaggi seguenti dopo aver creato un db su postgres tramite ```script.sql``` :
 ### Creazione di un Ambiente Virtuale
 
 1. Apri il terminale e naviga nella directory del progetto
