@@ -2,7 +2,7 @@
 
 ## Introduzione
 
-Abbiamo eseguito un benchmark per confrontare le prestazioni di PostgreSQL (database relazionale) e MongoDB (database non relazionale) su diverse operazioni: INSERT, SELECT, SELECT_ALL, UPDATE, DELETE. I dati sono stati testati sia in formato CSV che JSON per valutare eventuali differenze di efficienza.
+Ho eseguito un benchmark per confrontare le prestazioni di PostgreSQL (database relazionale) e MongoDB (database non relazionale) su diverse operazioni: INSERT, SELECT, SELECT_ALL, UPDATE, DELETE. I dati sono stati testati sia in formato CSV che JSON per valutare eventuali differenze di efficienza.
 
 ## Risultati del Benchmark
 
