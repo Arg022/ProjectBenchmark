@@ -78,7 +78,7 @@ SQL_DB = {
 
 #### Configurazione MongoDB
 
-Nel file `script.py`, puoi configurare la connessione a MongoDB. Se il tuo MongoDB richiede autenticazione, fornisci `username` e `password`. Se non è richiesta autenticazione, imposta `username` e `password` su `None`.
+Se il tuo MongoDB richiede autenticazione, fornisci `username` e `password`. Se non è richiesta autenticazione, imposta `username` e `password` su `None`.
 
 ```python
 MONGO_DB = {
